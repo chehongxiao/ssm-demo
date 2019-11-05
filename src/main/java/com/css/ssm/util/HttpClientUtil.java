@@ -33,8 +33,14 @@ public class HttpClientUtil {
      * 初始化请求相关配置
      */
     private static RequestConfig requestConfig = RequestConfig.custom()
-            .setSocketTimeout(1800)
-            .setConnectTimeout(1800)
+            // socket读写超时时间(单位毫秒)
+            .setSocketTimeout(5000)
+            // 设置请求超时时间(单位毫秒)
+            .setConnectionRequestTimeout(5000)
+            // 设置连接超时时间(单位毫秒)
+            .setConnectTimeout(5000)
+            // 设置是否允许重定向(默认为true)
+            .setRedirectsEnabled(true)
             .build();
     /**
      * http调用客户端对象
