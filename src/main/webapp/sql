@@ -1,8 +1,8 @@
 -- ----------------------------
--- Table structure for `user_t`
+-- Table structure for `t_user`
 -- ----------------------------
-DROP TABLE IF EXISTS `user_t`;
-CREATE TABLE `user_t` (
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(40) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -13,5 +13,5 @@ CREATE TABLE `user_t` (
 -- ----------------------------
 -- Records of user_t
 -- ----------------------------
-INSERT INTO `user_t` VALUES ('1', '测试', '345', '24');
-INSERT INTO `user_t` VALUES ('2', 'javen', '123', '10');
+INSERT INTO `t_user` VALUES ('1', '测试', '345', '24');
+INSERT INTO `t_user` VALUES ('2', 'javen', '123', '10');

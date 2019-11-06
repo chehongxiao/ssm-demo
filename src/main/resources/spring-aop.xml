@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <!--使用注解方式 -->
+    <!--<aop:aspectj-autoproxy/>-->
+
+    <!--配置文件方式 -->
+    <bean id="aopp" class="com.css.ssm.util.AopLoggerAspect"></bean>
+    <!--配置切面-->
+    <aop:config>
+        <!-- 定义切入点 -->
+        <aop:pointcut id="pointcut" expression="execution(* com.css.ssm.serviceImpl.UserServiceImpl.*(..))" />
+        <!-- 引用包含增强方法的Bean -->
+        <aop:aspect ref="aopp">
+            <!-- 将afterThrowing()方法定义为异常抛出增强并引用pointcut切入点 -->
+            <!-- 通过throwing属性指定为名为e的参数注入异常实例 -->
+            <aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="throwable"></aop:after-throwing>
+            <aop:after method="doAfter" pointcut-ref="pointcut"></aop:after>
+            <aop:before method="doBefore" pointcut-ref="pointcut"></aop:before>
+            <aop:around method="around" pointcut-ref="pointcut"></aop:around>
+            <aop:after-returning method="afterReturn" pointcut-ref="pointcut" returning="result"></aop:after-returning>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
